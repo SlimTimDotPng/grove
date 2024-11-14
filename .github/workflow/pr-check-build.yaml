@@ -1,0 +1,21 @@
+name: PR Check Build & Test
+
+on:
+    pull_request: [opened, synchronize, reopened]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Setup Node.js 20
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: npm i
+            - run: npm run build
+            - run: npm run test
+

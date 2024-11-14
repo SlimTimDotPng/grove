@@ -1,23 +1,23 @@
-import Trie from "../src/trie/Trie";
-import TrieNode from "../src/trie/TrieNode";
+const {describe, expect, test, beforeEach} = require("@jest/globals");
+const {Trie, TrieNode} = require("../dist/grove.js");
 
 
-describe("Trie spec", ()=>{
+describe("Trie spec", () => {
 
     let trie;
 
-    beforeEach(()=>{
+    beforeEach(() => {
         trie = new Trie();
     });
 
-    it("creating new instance of Trie",()=>{
+    test("creating new instance of Trie", () => {
         expect(trie).toBeDefined();
-        expect(trie).toEqual(jasmine.any(Trie));
-        expect(trie.root).toEqual(jasmine.any(TrieNode));
-        expect(trie._lastIndex).toBe(1);
+        expect(trie).toBeInstanceOf(Trie);
+        expect(trie.root).toBeInstanceOf(TrieNode);
+        expect(trie._lastIndex).toEqual(1);
     });
 
-    it("inserting word CACAO",()=>{
+    test("inserting word CACAO", () => {
         const word = "CACAO";
 
         trie.insert(word);

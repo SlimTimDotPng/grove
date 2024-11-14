@@ -1,2 +1,8 @@
 # grovejs
-Lightweight library for tree data structures.
+
+Lightweight
+library
+for
+tree
+data
+structures.

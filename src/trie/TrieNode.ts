@@ -5,9 +5,9 @@
  * If the node is the end of a word, it has the flag `isEndOfWord` set to true and `word` is set to the indexed word.
  * If the node is the end of a word, it can contain some additional data.
  */
-export default class TrieNode {
-    private _parent: { key: string; node: TrieNode | null } | null;
-    private _children: { [key: string]: TrieNode };
+export default class TrieNode<T> {
+    private _parent: { key: string; node: TrieNode<T> | null } | null;
+    private _children: { [key: string]: TrieNode<T> };
     public data: any;
     public isEndOfWord: boolean;
     public word: string | null;
@@ -19,7 +19,7 @@ export default class TrieNode {
      * @param parent.node Reference to the parent node.
      * @param isRoot Boolean flag of root node. If the node is root, it does not check for parent.
      */
-    constructor(parent: { key: string; node: TrieNode | null } | null = { key: "", node: null }, isRoot: boolean = false) {
+    constructor(parent: { key: string; node: TrieNode<T> | null } | null = { key: "", node: null }, isRoot: boolean = false) {
         if (!isRoot && (!parent?.key || typeof parent.key !== 'string')) {
             throw new Error("Parent key cannot be null, empty, or not of type string!");
         }
@@ -38,7 +38,7 @@ export default class TrieNode {
      * Get parent object consisting of the child index and parent node.
      * @returns The parent object with key and node reference.
      */
-    get parent(): { key: string; node: TrieNode | null } | null {
+    get parent(): { key: string; node: TrieNode<T> | null } | null {
         return this._parent;
     }
 
@@ -46,7 +46,7 @@ export default class TrieNode {
      * Get map of all node's children.
      * @returns An object where each key is a character and the value is the corresponding child node.
      */
-    get children(): { [key: string]: TrieNode } {
+    get children(): { [key: string]: TrieNode<T> } {
         return this._children;
     }
 
@@ -103,7 +103,7 @@ export default class TrieNode {
      * @param node The TrieNode to add as a child.
      * @returns The old child node if a child was overridden, otherwise null.
      */
-    addChild(char: string, node: TrieNode): TrieNode | null {
+    addChild(char: string, node: TrieNode<T>): TrieNode<T> | null {
         if (!char || !node) return null;
 
         const old = this._children[char];

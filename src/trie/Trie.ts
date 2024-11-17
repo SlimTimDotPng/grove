@@ -3,23 +3,23 @@ import TrieNode from "./TrieNode";
 /**
  * Trie data structure.
  */
-export default class Trie {
-    private _root: TrieNode;
+export default class Trie<T> {
+    private _root: TrieNode<T>;
     public _lastIndex: number;
 
     /**
      * @constructor
      */
     constructor() {
-        this._root = new TrieNode(null, true);
+        this._root = new TrieNode<T>(null, true);
         this._lastIndex = 1;
     }
 
     /**
      * Get root node of the Trie
-     * @returns {TrieNode}
+     * @returns {TrieNode<T>}
      */
-    get root(): TrieNode {
+    get root(): TrieNode<T> {
         return this._root;
     }
 
@@ -41,7 +41,7 @@ export default class Trie {
      * @param wordIndex - The index of the character in the word.
      * @private
      */
-    private _insertWord(word: string, data: any, currentNode: TrieNode, wordIndex: number): boolean {
+    private _insertWord(word: string, data: any, currentNode: TrieNode<T>, wordIndex: number): boolean {
         if (wordIndex === word.length) {
             currentNode.word = word;
             currentNode.update(data || this._getNextIndex());
@@ -50,7 +50,7 @@ export default class Trie {
 
         const c = word.charAt(wordIndex);
         if (!currentNode.hasChild(c)) {
-            currentNode.addChild(c, new TrieNode({ key: c, node: currentNode }));
+            currentNode.addChild(c, new TrieNode<T>({ key: c, node: currentNode }));
         }
         return this._insertWord(word, data, currentNode.children[c], wordIndex + 1);
     }
@@ -76,7 +76,7 @@ export default class Trie {
      * @returns The TrieNode for the word, or null if not found.
      * @private
      */
-    private _searchNode(word: string, currentNode: TrieNode, wordIndex: number): TrieNode | null {
+    private _searchNode(word: string, currentNode: TrieNode<T>, wordIndex: number): TrieNode<T> | null {
         if (wordIndex === word.length) {
             return currentNode.isEndOfWord ? currentNode : null;
         }
@@ -109,7 +109,7 @@ export default class Trie {
      * @param currentNode - The current node to delete.
      * @private
      */
-    private _deleteWord(currentNode: TrieNode): void | null{
+    private _deleteWord(currentNode: TrieNode<T>): void | null{
         if (currentNode === this._root) return;
         
         const parent = currentNode.parent;
@@ -139,7 +139,7 @@ export default class Trie {
      * @param word - The word to retrieve the data node for.
      * @returns The TrieNode associated with the word.
      */
-    getDataNode(word: string): TrieNode | null {
+    getDataNode(word: string): TrieNode<T> | null {
         return this._searchNode(word, this._root, 0);
     }
 
@@ -148,8 +148,8 @@ export default class Trie {
      * @param word - The word to retrieve the path for.
      * @returns An array of TrieNodes forming the path to the word.
      */
-    getPath(word: string): Array<TrieNode | null> {
-        const path: Array<TrieNode | null> = [this._root];
+    getPath(word: string): Array<TrieNode<T> | null> {
+        const path: Array<TrieNode<T> | null> = [this._root];
 
         for (let i = 1; i <= word.length; i++) {
             path.push(this._searchNode(word.substring(0, i), this._root, 0));

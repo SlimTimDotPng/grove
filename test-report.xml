@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="C:\Users\timot\Desktop\year5\ESS\0_grove_odovzdavka_najnovsia_verzia\grove\test\trie.spec.ts">
-    <testCase name="Trie spec creating new instance of Trie" duration="5"/>
-    <testCase name="Trie spec inserting word CACAO" duration="25"/>
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should add and delete child nodes" duration="3"/>
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should update a node&apos;s data and mark it as end of word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests TrieNode Tests should unlink a node" duration="2"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should insert and search for a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should return null for a non-existent word" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should delete a word" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should update data for a word" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle words with common prefixes" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle deletion of word with shared prefixes" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should retrieve path to a word" duration="1"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should get data node for a word" duration="0"/>
+    <testCase name="Trie and TrieNode Tests Trie Tests should handle case-insensitive words" duration="1"/>
   </file>
 </testExecutions>
